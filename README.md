@@ -22,7 +22,12 @@ const app = new Koa();
 app.use(koaApikey({
     // specifies the server system environment variable which will container
     // the comma separated list of API keys
-    apiKeyServerEnvironmentVariableName: 'REST_API_KEYS'
+    apiKeyServerEnvironmentVariableName: 'REST_API_KEYS',
+    // don't enforce API key authentication on these routes
+    unprotectedRoutes: [
+      '/v1/health',
+      '/v1/login'
+    ]
 }
 ));
 
