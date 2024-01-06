@@ -29,7 +29,10 @@ app.use(koaApikey({
       '/v1/login'
     ],
     // specify a custom header name for the API key
-    customHeaderName: 'my-custom-apikey-header'
+    customHeaderName: 'my-custom-apikey-header',
+    // if you need to TEMPORARILY turn on debug logging, which would show
+    // the API keys in the environment and those that are passed, set to true
+    useDebugLoggingShowingSecrets: false
 }));
 
 app.use((ctx) => {
@@ -81,3 +84,8 @@ ssm-starter \
 ```shell
 npx jest
 ```
+
+Or run tests with debug output on for koa* labeled logs:
+```shell
+DEBUG=koa* npx jest
+``````

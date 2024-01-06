@@ -11,7 +11,8 @@ app.use(koaApikey({
             '/v1/health',
             '/v1/login'
         ],
-        customHeaderName: 'my-custom-apikey-header'
+        customHeaderName: 'my-custom-apikey-header',
+        useDebugLoggingShowingSecrets: false
 }));
 
 router.get('/v1/health', (ctx) => {
