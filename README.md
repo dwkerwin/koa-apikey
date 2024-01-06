@@ -29,9 +29,11 @@ app.use(koaApikey({
       '/v1/login'
     ],
     // specify a custom header name for the API key
+    // headers must be lower case and can use dashes but not underscores
     customHeaderName: 'my-custom-apikey-header',
     // if you need to TEMPORARILY turn on debug logging, which would show
     // the API keys in the environment and those that are passed, set to true
+    // also execute with DEBUG=koa-apikey node index.js to see output
     useDebugLoggingShowingSecrets: false
 }));
 
@@ -48,6 +50,7 @@ Example
 # in a terminal
 export REST_API_KEYS="aaabbbccc123,someotherkey123"
 node index.js
+# or to run with debug output: DEBUG=koa-apikey node index.js
 
 # in another submit a request
 curl -v http://localhost:3000/

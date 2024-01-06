@@ -1,6 +1,6 @@
 {
     "name": "koa-apikey",
-    "version": "0.2.2",
+    "version": "0.2.3",
     "description": "A simple API Key authorization middleware handler for Koa.",
     "main": "lib/koa-apikey.js",
     "author": "dwkerwin@gmail.com",
