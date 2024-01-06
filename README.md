@@ -20,16 +20,17 @@ const koaApikey = require("koa-apikey");
 const app = new Koa();
 
 app.use(koaApikey({
-    // specifies the server system environment variable which will container
+    // specifies the server system environment variable which will contain
     // the comma separated list of API keys
     apiKeyServerEnvironmentVariableName: 'REST_API_KEYS',
     // don't enforce API key authentication on these routes
     unprotectedRoutes: [
       '/v1/health',
       '/v1/login'
-    ]
-}
-));
+    ],
+    // specify a custom header name for the API key
+    customHeaderName: 'my-custom-apikey-header'
+}));
 
 app.use((ctx) => {
   ctx.body = "Hello World"
@@ -73,4 +74,10 @@ pip install ssm-starter
 ssm-starter \
     --ssm-name /dev/my-rest-service/ \
     --command node index.js
+```
+
+## Testing
+
+```shell
+npx jest
 ```
