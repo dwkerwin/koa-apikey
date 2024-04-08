@@ -1,6 +1,6 @@
 {
     "name": "koa-apikey",
-    "version": "0.2.4",
+    "version": "0.2.5",
     "description": "A simple API Key authorization middleware handler for Koa.",
     "main": "lib/koa-apikey.js",
     "author": "dwkerwin@gmail.com",
@@ -20,6 +20,7 @@
         "test": "mocha"
     },
     "dependencies": {
-        "debug": "^4.3.4"
+        "bunyan": "^1.8.15",
+        "bunyan-prettystream": "^0.1.3"
     }
 }

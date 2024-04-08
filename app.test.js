@@ -12,7 +12,7 @@ app.use(koaApikey({
             '/v1/login'
         ],
         customHeaderName: 'my-custom-apikey-header',
-        useDebugLoggingShowingSecrets: false
+        useDebugLoggingShowingSecrets: true
 }));
 
 router.get('/v1/health', (ctx) => {
@@ -45,19 +45,19 @@ describe('Test the root path', () => {
         expect(response.statusCode).toBe(401);
     });
     test('It should allow a protected route with a valid apikey', async () => {
-        process.env.REST_API_KEYS = "abc123";
+        process.env.REST_API_KEYS = "abc123def456";
         const response = await request(app.callback()).get('/v1/protected').set('x-apikey', process.env.REST_API_KEYS);
         expect(response.statusCode).toBe(200);
         expect(response.text).toBe('Congratulations! You have the power to access this protected route!');
     });
     test('It should allow a protected route with a valid apikey when there are multiple keys', async () => {
-        process.env.REST_API_KEYS = "abc123,def456";
+        process.env.REST_API_KEYS = "abc123def456,xyz987jkl654";
         const response = await request(app.callback()).get('/v1/protected').set('x-apikey', process.env.REST_API_KEYS.split(',')[1]);
         expect(response.statusCode).toBe(200);
         expect(response.text).toBe('Congratulations! You have the power to access this protected route!');
     });
     test('It should allow a protected route with a valid apikey in a custom header', async () => {
-        process.env.REST_API_KEYS = "abc123";
+        process.env.REST_API_KEYS = "abc123def456";
         const response = await request(app.callback()).get('/v1/protected').set('my-custom-apikey-header', process.env.REST_API_KEYS);
         expect(response.statusCode).toBe(200);
         expect(response.text).toBe('Congratulations! You have the power to access this protected route!');

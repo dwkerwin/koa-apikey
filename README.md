@@ -90,5 +90,5 @@ npx jest
 
 Or run tests with debug output on for koa* labeled logs:
 ```shell
-DEBUG=koa* npx jest
+LOG_LEVEL=debug npx jest
 ``````
