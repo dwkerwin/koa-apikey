@@ -39,10 +39,12 @@ describe('Test the root path', () => {
     test('It should disllow a protected route with a missing apikey', async () => {
         const response = await request(app.callback()).get('/v1/protected');
         expect(response.statusCode).toBe(401);
+        expect(response.text).toContain('API Key is required');
     });
     test('It should disallow a protected route with an invalid apikey', async () => {
         const response = await request(app.callback()).get('/v1/protected').set('x-apikey', 'invalid');
         expect(response.statusCode).toBe(401);
+        expect(response.text).toContain('Invalid API Key');
     });
     test('It should allow a protected route with a valid apikey', async () => {
         process.env.REST_API_KEYS = "abc123def456";
